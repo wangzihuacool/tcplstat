@@ -14,6 +14,14 @@ static char *FindSql( char *packet_data_intercepted , UINT32 packet_data_len_int
 	char		*p1 = NULL ;
 	char		*p2 = NULL ;
 	char		*end = packet_data_intercepted + packet_data_len_intercepted - 1 ;
+
+    p1 = memistr2_region( packet_data_intercepted , "EXPLAIN" , end , 1 ) ;
+    if( p1 )
+    {
+        (*p_sql_len) = LengthUtilEndOfText( p1+7 , end ) ;
+        (*p_sql_len) += 6 ;
+        return p1;
+    }
 	
 	p1 = memistr2_region( packet_data_intercepted , "SELECT" , end , 1 ) ;
 	if( p1 )
@@ -132,15 +140,7 @@ static char *FindSql( char *packet_data_intercepted , UINT32 packet_data_len_int
 		(*p_sql_len) += 6 ;
 		return p1;
 	}
-	
-	p1 = memistr2_region( packet_data_intercepted , "EXPLAIN" , end , 1 ) ;
-	if( p1 )
-	{
-		(*p_sql_len) = LengthUtilEndOfText( p1+7 , end ) ;
-		(*p_sql_len) += 6 ;
-		return p1;
-	}
-	
+
 	return 0;
 }
 
