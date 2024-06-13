@@ -141,6 +141,38 @@ static char *FindSql( char *packet_data_intercepted , UINT32 packet_data_len_int
 		return p1;
 	}
 
+    p1 = memistr2_region( packet_data_intercepted , "SET" , end , 1 ) ;
+    if( p1 )
+    {
+        (*p_sql_len) = LengthUtilEndOfText( p1+3 , end ) ;
+        (*p_sql_len) += 3 ;
+        return p1;
+    }
+
+    p1 = memistr2_region( packet_data_intercepted , "SHOW" , end , 1 ) ;
+    if( p1 )
+    {
+        (*p_sql_len) = LengthUtilEndOfText( p1+4 , end ) ;
+        (*p_sql_len) += 4 ;
+        return p1;
+    }
+
+    p1 = memistr2_region( packet_data_intercepted , "RENAME" , end , 1 ) ;
+    if( p1 )
+    {
+        (*p_sql_len) = LengthUtilEndOfText( p1+6 , end ) ;
+        (*p_sql_len) += 6 ;
+        return p1;
+    }
+
+    p1 = memistr2_region( packet_data_intercepted , "START" , end , 1 ) ;
+    if( p1 )
+    {
+        (*p_sql_len) = LengthUtilEndOfText( p1+5 , end ) ;
+        (*p_sql_len) += 5 ;
+        return p1;
+    }
+
 	return 0;
 }
 
