@@ -19,7 +19,7 @@ static char *FindSql( char *packet_data_intercepted , UINT32 packet_data_len_int
     if( p1 )
     {
         (*p_sql_len) = LengthUtilEndOfText( p1+7 , end ) ;
-        (*p_sql_len) += 6 ;
+        (*p_sql_len) += 7 ;
         return p1;
     }
 	
@@ -89,7 +89,7 @@ static char *FindSql( char *packet_data_intercepted , UINT32 packet_data_len_int
 	if( p1 )
 	{
 		(*p_sql_len) = LengthUtilEndOfText( p1+4 , end ) ;
-		(*p_sql_len) += 6 ;
+		(*p_sql_len) += 4 ;
 		return p1;
 	}
 	
@@ -97,7 +97,7 @@ static char *FindSql( char *packet_data_intercepted , UINT32 packet_data_len_int
 	if( p1 )
 	{
 		(*p_sql_len) = LengthUtilEndOfText( p1+5 , end ) ;
-		(*p_sql_len) += 6 ;
+		(*p_sql_len) += 5 ;
 		return p1;
 	}
 	
@@ -121,7 +121,7 @@ static char *FindSql( char *packet_data_intercepted , UINT32 packet_data_len_int
 	if( p1 )
 	{
 		(*p_sql_len) = LengthUtilEndOfText( p1+8 , end ) ;
-		(*p_sql_len) += 6 ;
+		(*p_sql_len) += 8 ;
 		return p1;
 	}
 	
@@ -129,7 +129,7 @@ static char *FindSql( char *packet_data_intercepted , UINT32 packet_data_len_int
 	if( p1 )
 	{
 		(*p_sql_len) = LengthUtilEndOfText( p1+5 , end ) ;
-		(*p_sql_len) += 6 ;
+		(*p_sql_len) += 5 ;
 		return p1;
 	}
 	
@@ -137,7 +137,7 @@ static char *FindSql( char *packet_data_intercepted , UINT32 packet_data_len_int
 	if( p1 )
 	{
 		(*p_sql_len) = LengthUtilEndOfText( p1+8 , end ) ;
-		(*p_sql_len) += 6 ;
+		(*p_sql_len) += 8 ;
 		return p1;
 	}
 
